@@ -1,2 +1,2 @@
 # hoaxGen_server
-hoax sharing app
+## hoax sharing app
