@@ -23,9 +23,11 @@ const {
 
 const router = express.Router();
 
-router.post('/', userAuthentication, upload.single('file'), sendUploadToGCS, postCreateHoax);
+router.use(userAuthentication);
+
+router.post('/', upload.single('file'), sendUploadToGCS, postCreateHoax);
 router.get('/', getHoaxesByUser);
-router.get('/:id', getHoaxById);
-router.delete('/:id', deleteHoaxById);
+router.get('/:id', hoaxOwnership, getHoaxById);
+router.delete('/:id', hoaxOwnership, deleteHoaxById);
 
 module.exports = router;
