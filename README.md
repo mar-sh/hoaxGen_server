@@ -3,8 +3,8 @@
 
 ## endpoints
 
-no|route|method|request|response(success)|description
-|---|---|---|---|---|---|---|---|---|
+|no|route|method|request|response|description|
+|---|---|---|---|---|---|
 1|/register|POST|```body: { email:(string), password: (string)} ```|```status: 201, message: (string), token: jwt, currentUser: { userId(objId), email:(string)} ```|User registration
 2|/login|POST|```body: { email:(string), password: (string)} ```| ```status:200, message: (string), token: jwt, currentUser: { userId(objId), email:(string)} ```| User login
 3|/hoaxes|POST|```headers: { token: jwt }, multipart/form-data: 'file' ```|```status:201, message: (string), hoax: { _id:(objId), url: (url to gcs), userId:(objId) } ```|Create a hoax
