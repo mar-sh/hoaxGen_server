@@ -7,6 +7,10 @@ const hoaxSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'User',
   },
+  isTemplate: {
+    type: String,
+    default: 'false',
+  },
 }, { timestamps: true });
 
 const Hoax = mongoose.model('Hoax', hoaxSchema);

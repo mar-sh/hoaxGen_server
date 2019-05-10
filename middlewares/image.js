@@ -15,6 +15,7 @@ const getPublicUrl = (filename) => {
 }
 
 const sendUploadToGCS = (req, res, next) => {
+  console.log('abc', req.file)
   if (!req.file) {
     return next();
   };

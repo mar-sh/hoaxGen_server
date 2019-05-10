@@ -10,7 +10,7 @@ const morgan = require('morgan');
 dotenv.config();
 
 const app = express();
-const dbURL = `mongodb://localhost:27017/${process.env.MONGODB_NAME}`;
+const dbURL = `mongodb://localhost:27017/hoaxGen` || process.env.ATLAS_URI;
 const port = process.env.PORT || 3000;
 
 const mainRoute = require('./routes/web');
@@ -44,6 +44,7 @@ if (process.env.NODE_ENV === 'development') {
       return chalk.red.bold(res.statusCode);
     };
   });
+  
   const logger = morgan(function (tokens, req, res) {
     return [
         chalk.whiteBright(tokens.date(req, res)),

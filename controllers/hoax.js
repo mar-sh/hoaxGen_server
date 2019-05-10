@@ -25,10 +25,14 @@ class HoaxController {
       });
   };
 
-  static getHoaxesByUser(req, res) {
-    const id = req.authenticated.id;
+  static getHoaxes(req, res) {
+    let queries = req.query ? {} : { _id: req.authenticated.id } ;
 
-    Hoax.find({ userId: id })
+    for(let key in req.query){
+        queries[key] = {$regex: new RegExp(req.query[key]), $options: 'ig'};
+    };
+
+    Hoax.find(queries)
       .then((hoaxes) => {
         res.status(200).json({
           message: 'FETCHED',
@@ -36,10 +40,10 @@ class HoaxController {
         });
       })
       .catch((error) => {
-        res.status(500).json(error);
+        res.status(500).json(error)
       });
   };
-  
+
   static getHoaxById(req, res) {
     const { id } = req.params;
 
